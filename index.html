@@ -1,157 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(120deg, #1e1e2f, #4729b6);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .fundo {
-            text-align: center;
-        }
-        .calculadora {
-            background-color: rgba(0, 0, 0, 0.85);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            max-width: 400px;
-            width: 90%;
-        }
-        .calculadora h1 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        #resultado {
-            background-color: #222;
-            border: none;
-            border-radius: 5px;
-            width: 100%;
-            height: 50px;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-            color: #fff;
-            text-align: right;
-            padding: 5px 10px;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        table {
-            width: 100%;
-        }
-        td {
-            text-align: center;
-        }
-        .botao {
-            width: 60px;
-            height: 60px;
-            font-size: 1.2rem;
-            color: #fff;
-            background: linear-gradient(45deg, #333, #555);
-            border: none;
-            border-radius: 8px;
-            margin: 5px;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
-        .botao:hover {
-            background: #444;
-            transform: scale(1.1);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-        }
-        .botao:active {
-            transform: scale(1);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        .botao[style*="height: 106px;"] {
-            background: linear-gradient(45deg, #5729b6, #342096);
-        }
-        .botao[style*="width: 106px;"] {
-            background: linear-gradient(45deg, #5732c6, #4a1db3);
-        }
-        @media (max-width: 400px) {
-            .botao {
-                width: 50px;
-                height: 50px;
-                font-size: 1rem;
-            }
-            #resultado {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
+    <title>Guilherme Martini Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="fundo">
-        <h1>Guilherme Martini</h1>
-        <div class="calculadora">
-            <h1>Calculadora</h1>
-            <input type="text" id="resultado" readonly />
-            <table>
-                <tr>
-                    <td><button class="botao" onclick="clean()">C</button></td>
-                    <td><button class="botao" onclick="back()">&lt;</button></td>
-                    <td><button class="botao" onclick="insert('/')">/</button></td>
-                    <td><button class="botao" onclick="insert('*')">×</button></td>
-                </tr>
-                <tr>
-                    <td><button class="botao" onclick="insert('7')">7</button></td>
-                    <td><button class="botao" onclick="insert('8')">8</button></td>
-                    <td><button class="botao" onclick="insert('9')">9</button></td>
-                    <td><button class="botao" onclick="insert('-')">−</button></td>
-                </tr>
-                <tr>
-                    <td><button class="botao" onclick="insert('4')">4</button></td>
-                    <td><button class="botao" onclick="insert('5')">5</button></td>
-                    <td><button class="botao" onclick="insert('6')">6</button></td>
-                    <td><button class="botao" onclick="insert('+')">+</button></td>
-                </tr>
-                <tr>
-                    <td><button class="botao" onclick="insert('1')">1</button></td>
-                    <td><button class="botao" onclick="insert('2')">2</button></td>
-                    <td><button class="botao" onclick="insert('3')">3</button></td>
-                    <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular()">=</button></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><button class="botao" style="width: 106px;" onclick="insert('0')">0</button></td>
-                    <td><button class="botao" onclick="insert('.')">.</button></td>
-                </tr>
-            </table>
+    <!-- Container Principal -->
+    <div class="container">
+        <header>
+            <h1>Guilherme Martini Calculator</h1>
+            <!-- Switcher de Temas -->
+            <div class="theme-switcher">
+                <button data-theme="dark">Dark</button>
+                <button data-theme="light">Light</button>
+                <button data-theme="neon">Neon</button>
+                <button data-theme="vintage">Vintage</button>
+            </div>
+        </header>
+
+        <!-- Área da Calculadora -->
+        <div class="calculator">
+            <!-- Display de Resultado -->
+            <input type="text" id="resultado" readonly>
+            <!-- Teclado (Grid de Botões) -->
+            <div class="button-grid">
+                <button class="btn" onclick="playSound(); clean();">C</button>
+                <button class="btn" onclick="playSound(); back();">⌫</button>
+                <button class="btn" onclick="playSound(); insert('%')">%</button>
+                <button class="btn" onclick="playSound(); insert('/')">÷</button>
+
+                <button class="btn" onclick="playSound(); insert('7')">7</button>
+                <button class="btn" onclick="playSound(); insert('8')">8</button>
+                <button class="btn" onclick="playSound(); insert('9')">9</button>
+                <button class="btn" onclick="playSound(); insert('*')">×</button>
+
+                <button class="btn" onclick="playSound(); insert('4')">4</button>
+                <button class="btn" onclick="playSound(); insert('5')">5</button>
+                <button class="btn" onclick="playSound(); insert('6')">6</button>
+                <button class="btn" onclick="playSound(); insert('-')">−</button>
+
+                <button class="btn" onclick="playSound(); insert('1')">1</button>
+                <button class="btn" onclick="playSound(); insert('2')">2</button>
+                <button class="btn" onclick="playSound(); insert('3')">3</button>
+                <button class="btn" onclick="playSound(); insert('+')">+</button>
+
+                <button class="btn zero" onclick="playSound(); insert('0')">0</button>
+                <button class="btn" onclick="playSound(); insert('.')">.</button>
+                <button class="btn equals" onclick="playSound(); calcular()">=</button>
+            </div>
+
+            <!-- Botão para Alternar Modo Científico -->
+            <button class="toggle-scientific" onclick="toggleScientific()">Modo Científico</button>
+            <!-- Painel Científico (inicialmente oculto) -->
+            <div id="scientific-panel" class="scientific-panel hidden">
+                <div class="button-grid scientific">
+                    <button class="btn" onclick="playSound(); insert('Math.sin(')">sin</button>
+                    <button class="btn" onclick="playSound(); insert('Math.cos(')">cos</button>
+                    <button class="btn" onclick="playSound(); insert('Math.tan(')">tan</button>
+                    <button class="btn" onclick="playSound(); insert('Math.log(')">log</button>
+                    <button class="btn" onclick="playSound(); insert('Math.sqrt(')">√</button>
+                    <button class="btn" onclick="playSound(); insert('Math.pow(')">^</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Histórico de Cálculos -->
+        <div class="history">
+            <h2>Histórico</h2>
+            <ul id="history-list"></ul>
+        </div>
+
+        <!-- Conversor de Unidades (Exemplo: Conversor de Temperatura) -->
+        <div class="converter">
+            <h2>Conversor de Temperatura</h2>
+            <input type="number" id="temp-input" placeholder="Digite °C">
+            <button onclick="converterTemp()">Converter para °F</button>
+            <p id="temp-result"></p>
         </div>
     </div>
-    <script>
-        function insert(num) {
-            var numero = document.getElementById('resultado').value;
-            document.getElementById('resultado').value = numero + num;
-        }
-        function clean() {
-            document.getElementById('resultado').value = "";
-        }
-        function back() {
-            var resultado = document.getElementById('resultado').value;
-            document.getElementById('resultado').value = resultado.substring(0, resultado.length - 1);
-        }
-        function calcular() {
-            var resultado = document.getElementById('resultado').value;
-            if (resultado) {
-                document.getElementById('resultado').value = eval(resultado);
-            } else {
-                document.getElementById('resultado').value = "Nada...";
-            }
-        }
-    </script>
+
+    <!-- Áudio para Feedback Sonoro (Certifique-se de ter o arquivo click.mp3 na pasta) -->
+    <audio id="click-sound" src="click.mp3"></audio>
+
+    <!-- Peixes Animados -->
+    <img src="assets/image-removebg-preview.png" class="fish" style="top: 50px; left: 0;">
+    <img src="assets/pngtree-sea-animal-clown-fish-nemo-fish-png-image_11556380-removebg-preview.png" class="fish" style="top: 200px; left: 0; animation-duration: 15s;">
+
+    <script src="script.js"></script>
 </body>
 </html>
